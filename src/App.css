@@ -1,38 +1,174 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  width: 100%;
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 0;
+  background: rgb(27, 27, 50);
+}
+.App h1 {
+  font-family: sans-serif;
+  font-size: 38px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(112, 111, 211, 1);
+  margin-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.App h1 span {
+  font-weight: normal;
+  font-size: 18px;
+  text-transform: lowercase;
+  color: rgb(230, 230, 230);
+}
+
+/* ------------------- FORM */
+.form-group {
+  width: 100%;
+  margin: 20px auto 5px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.form-group input {
+  min-width: 200px;
+  max-width: 600px;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(112, 111, 211, 0.2);
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.form-group input::placeholder {
+  font-style: italic;
+  letter-spacing: 1.4px;
+  color: rgba(255, 255, 255, 0.592);
 }
 
-@keyframes App-logo-spin {
+.form-group button {
+  max-width: 140px;
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(112, 111, 211, 0.5);
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .form-group {
+    width: 90%;
+  }
+}
+@media (max-width: 467px) {
+  .form-group button {
+    width: 90px;
+  }
+}
+
+/* ------------------- GRID */
+.grid-photos {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 5px;
+  margin-top: 40px;
+}
+
+.grid-photos .item-photo {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  opacity: 0.7;
+  z-index: 100;
+
+  transform: translateY(0px) rotate(0deg) scale(1);
+
+  transition: all 0.2s linear;
+}
+
+.grid-photos .item-photo.unselected:hover,
+.grid-photos .item-photo.selected:hover {
+  opacity: 1;
+}
+
+.grid-photos .item-photo.unselected {
+  border: none;
+  z-index: 100;
+  opacity: 0.7;
+  transform: translateY(0px) rotate(0deg) scale(1);
+  animation: unselectedStateAnimation 0.7s ease backwards;
+}
+
+@keyframes unselectedStateAnimation {
   from {
-    transform: rotate(0deg);
+    opacity: 1;
+    z-index: 299;
+    transform: translateY(-30px) rotate(4deg) scale(1.1);
+    box-shadow: 0px 0px 12px rgba(112, 111, 211, 0.6);
   }
   to {
-    transform: rotate(360deg);
+    z-index: 100;
+    opacity: 0.7;
+    transform: translateY(0px) rotate(0deg) scale(1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
   }
+}
+
+.grid-photos .item-photo.selected {
+  z-index: 299;
+  opacity: 1;
+  transform: translateY(-30px) rotate(4deg) scale(1.1);
+  box-shadow: 0px 0px 12px rgba(112, 111, 211, 0.6);
+}
+
+.grid-photos .item-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  user-select: none;
+}
+.grid-photos .item-photo .control {
+  z-index: 300;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.grid-photos .item-photo .control:hover > .delete {
+  border-radius: 50%;
+  transform: rotate(90deg);
+}
+
+.grid-photos .item-photo .control .delete {
+  color: #fff;
+  background: rgba(33, 33, 33, 0.6);
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  display: grid;
+  place-items: center;
+
+  transition: all 0.2s ease;
 }
