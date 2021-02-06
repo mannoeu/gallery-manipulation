@@ -9,8 +9,8 @@
 
 # Live On
 
-Enjoy [clicking here]()
+Enjoy [clicking here](https://gallery-manipulation.netlify.app/)
 
 # What is it?
 
-Study of array manipulation in a gallery with manipulation of the position of images.
+Study of the manipulation of the array in a gallery with manipulation of the position of the images using purely javascritp, html and css.
